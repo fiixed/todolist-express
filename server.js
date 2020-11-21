@@ -34,9 +34,7 @@ app.post('/api/todos', (req, res) => {
     todoList.push({
         id: primaryId,
         todo: "second task"
-    });
-    
-    
+    }); 
 
     res.status(200).json({
         message: "todolist added"
@@ -45,9 +43,15 @@ app.post('/api/todos', (req, res) => {
 
 // PUT /api/todos/:id
 
-app.put('/api/todos/:id', function (req, res) {   
-    let obj = todoList.find(obj => obj.id == req.params.id);
-    res.status(200).send(obj);
+// app.put('/api/todos/:id', function (req, res) {   
+//     let obj = todoList.find(obj => obj.id == req.params.id);
+//     res.status(200).send(obj);
+//   });
+
+  app.put('/api/todos/:id', function (req, res) {   
+    let objIndex = todoList.findIndex(obj => obj.id === Number(req.params.id));
+    todoList[objIndex] = req.body;
+    res.status(200).send(todoList[objIndex]);
   });
 
 // DELETE /api/todos/:id
