@@ -21,7 +21,15 @@ app.get('/api/todos', (req, res) => {
 // GET /api/todos/:id
 app.get('/api/todos/:id', (req, res) => {
 
-    res.send(`${req.params.id}`);
+    const id = req.params.id;
+
+    let thisTask = todoList.find((task) => {
+        return task.id === Number(id);
+    });
+
+    res.status(200).json(
+        thisTask
+    );
 });
 // POST /api/todos
 
@@ -40,7 +48,7 @@ app.post('/api/todos', (req, res) => {
         message: "todolist added"
     });
 });
-
+console.log("this shit is bananas", ..."BANANAS");
 // PUT /api/todos/:id
 
 // app.put('/api/todos/:id', function (req, res) {   
